@@ -4,16 +4,17 @@ React Redux Starter
 Highly based off the awesome [SurviveJS Webpack Guide](http://survivejs.com/webpack/).
 
 #### Features
-** Build System **
+
+**Build System**
 - Webpack, Webpack Dev Middleware, Webpack Hot Middleware
 
-** JavaScript **
+**JavaScript**
 - Babel 6
 - React v15 with Hot module reloading
 - Redux
 - React Router
 
-** CSS **
+**CSS**
 - Bootstrap 4 with [Bulma theme](http://bulma.io/)
 - Eslint (Airbnb, React presets)
 - Sass
