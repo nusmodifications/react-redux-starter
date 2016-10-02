@@ -16,7 +16,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       webpack: {
-        config: 'webpack/webpack.config.js',
+        config: 'webpack/webpack.common.config.js',
       },
     },
   },
@@ -27,7 +27,7 @@ module.exports = {
     'import/extensions': ['error', 'always',
       {
         js: 'never',
-        jsx: 'never'
+        jsx: 'never',
       }
     ],
     "react/jsx-first-prop-new-line": ["error", "never"],

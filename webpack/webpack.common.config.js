@@ -1,9 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
-const merge = require('webpack-merge');
 const utils = require('./utils');
-const devServer = require('./dev-server');
 
 const SRC = '../src';
 const BUILD = '../dist';
@@ -85,54 +83,8 @@ const common = {
         include: PATHS.images,
       },
     ],
-  },
-  devServer: devServer,
+  }
 };
 
-var config;
-var environment;
-
-// Detect how npm is run and branch based on that
-switch (process.env.npm_lifecycle_event) {
-  case 'build':
-    environment = 'production';
-    config = merge(
-      common,
-      {
-        devtool: 'source-map',
-        output: {
-          path: PATHS.build,
-          filename: '[name].[chunkhash].js',
-          // This is used for require.ensure. The setup
-          // will work without but this is useful to set.
-          chunkFilename: '[chunkhash].js',
-        },
-      },
-      utils.clean(PATHS.build),
-      utils.setFreeVariable('process.env.NODE_ENV', environment),
-      utils.extractBundle({
-        name: 'vendor',
-        entries: vendor,
-      }),
-      utils.minify(),
-      utils.extractCSS(PATHS.styles)
-    );
-    break;
-  default:
-    environment = 'development';
-    config = merge(
-      common,
-      {
-        devtool: 'eval-source-map',
-      },
-      utils.setFreeVariable('process.env.NODE_ENV', environment),
-      utils.setupCSS(PATHS.styles),
-      devServer({
-        // Customize host/port here if needed
-        host: process.env.HOST,
-        port: process.env.PORT,
-      })
-    );
-}
-
-module.exports = config;
+module.exports = common;
+module.exports.PATHS = PATHS;
