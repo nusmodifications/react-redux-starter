@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router, Route, IndexRoute, useRouterHistory } from 'react-router';
-import { createHistory } from 'history';
+import { createHistory } from 'history'; // eslint-disable-line import/no-extraneous-dependencies
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from 'stores/configure-store';

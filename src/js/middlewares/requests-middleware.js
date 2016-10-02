@@ -12,7 +12,7 @@ function makeRequest(request, accessToken) {
   }
 
   return axios(req)
-    .then((response) => response.data);
+    .then(response => response.data);
 }
 
 export const API_REQUEST = Symbol('API_REQUEST');
@@ -20,7 +20,7 @@ export const REQUEST = '_REQUEST';
 export const SUCCESS = '_SUCCESS';
 export const FAILURE = '_FAILURE';
 
-export default (store) => (next) => (action) => {
+export default store => next => (action) => {
   const apiRequest = action[API_REQUEST];
   if (!apiRequest) {
     // Non-api request action
@@ -55,7 +55,7 @@ export default (store) => (next) => (action) => {
   // propagate the response of the request
   return makeRequest(payload, accessToken, meta)
     .then(
-      (response) => next(constructActionWith({
+      response => next(constructActionWith({
         requestStatus: SUCCESS,
         type: type + SUCCESS,
         request: payload,
@@ -63,7 +63,7 @@ export default (store) => (next) => (action) => {
         response,
       })
       ),
-      (error) => next(constructActionWith({
+      error => next(constructActionWith({
         requestStatus: FAILURE,
         type: type + FAILURE,
         request: payload,

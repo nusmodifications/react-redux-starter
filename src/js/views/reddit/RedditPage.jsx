@@ -34,7 +34,7 @@ class RedditPage extends Component {
       <div>
         <h1>Reddit</h1>
         <hr/>
-        <p>Try searching for "redux" to see the failure case.</p>
+        <p>Try searching for &#34;redux&#34; to see the failure case.</p>
         <form onSubmit={this.search}>
           <input className="form-control" value={this.state.topic} onChange={this.updateTopic}/>
         </form>
@@ -43,7 +43,7 @@ class RedditPage extends Component {
         {this.props.fetchRedditsRequest.isFailure ? <p>Request failed</p> : null}
         {this.props.fetchRedditsRequest.isSuccessful ?
           <ul>
-            {this.props.items.map((item) => <li key={item.data.id}>{item.data.title}</li>)}
+            {this.props.items.map(item => <li key={item.data.id}>{item.data.title}</li>)}
           </ul> : null
         }
       </div>
@@ -52,9 +52,15 @@ class RedditPage extends Component {
 }
 
 RedditPage.propTypes = {
-  items: PropTypes.array,
+  items: PropTypes.arrayOf(PropTypes.shape({
+    data: PropTypes.object,
+  })),
   fetchReddits: PropTypes.func,
-  fetchRedditsRequest: PropTypes.object,
+  fetchRedditsRequest: PropTypes.shape({
+    isPending: PropTypes.bool,
+    isFailure: PropTypes.bool,
+    isSuccessful: PropTypes.bool,
+  }),
 };
 
 function mapStateToProps(state) {

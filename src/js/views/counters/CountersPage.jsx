@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { increment, decrement } from 'actions/counter';
 
-const CountersPage = (props) => (
+const CountersPage = props => (
   <div>
     <h1>Counter</h1>
     <hr/>

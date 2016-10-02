@@ -1,13 +1,15 @@
 import React, { PropTypes } from 'react';
 
-const UserSection = (props) => (
+const UserSection = props => (
   <div>
     <p>User Id Selected: {props.params.userId}</p>
   </div>
 );
 
 UserSection.propTypes = {
-  params: PropTypes.object,
+  params: PropTypes.shape({
+    userId: PropTypes.string,
+  }),
 };
 
 export default UserSection;
