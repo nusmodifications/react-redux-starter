@@ -3,7 +3,7 @@ React Redux Starter
 
 Minimal non-opinionated starter for modern single-page applications. Highly based off the awesome [SurviveJS Webpack Guide](http://survivejs.com/webpack/).
 
-### Features
+## Features
 
 **Build System**
 - Webpack, Webpack Dev Middleware, Webpack Hot Middleware
@@ -20,19 +20,21 @@ Minimal non-opinionated starter for modern single-page applications. Highly base
 - Sass
 - Postcss (Stylelint, Autoprefixer)
 
-### Getting Started
+## Getting Started
 ```
 $ npm install
 $ npm start
 ```
 
-### Build for Deployment
+## Build for Deployment
 ```
 $ npm run build
 ```
 
-### TODO
+## TODO
 
+- Code splitting example
+- Webpack DLL plugin
 - Add Flow types
 - Add testing
   - Enzyme
