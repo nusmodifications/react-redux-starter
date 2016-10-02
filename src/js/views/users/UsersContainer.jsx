@@ -24,7 +24,7 @@ class UsersContainer extends Component {
         <h1>Users</h1>
         <div className="users-page">
           <ul>
-            {this.state.users.map((user) => (
+            {this.state.users.map(user => (
               <li key={user.id}>
                 <Link to={`/users/${user.id}`}>{user.name}</Link>
               </li>
@@ -40,7 +40,7 @@ class UsersContainer extends Component {
 }
 
 UsersContainer.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.element,
 };
 
 export default UsersContainer;
