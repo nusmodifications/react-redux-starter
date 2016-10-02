@@ -3,9 +3,9 @@ const webpack = require('webpack');
 module.exports = function (options) {
   return {
     watchOptions: {
-      // Delay the rebuild after the first change
+      // Delay the rebuild after the first change.
       aggregateTimeout: 300,
-      // Poll using interval (in ms, accepts boolean too)
+      // Poll using interval (in ms, accepts boolean too).
       poll: 1000,
     },
     devServer: {
