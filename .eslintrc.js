@@ -1,5 +1,9 @@
 module.exports = {
-  "extends": "airbnb",
+  parser: 'babel-eslint',
+  root: true,
+  extends: [
+    'airbnb',
+  ],
   "env": {
     "browser": true,
     "node": true
@@ -9,23 +13,29 @@ module.exports = {
     "jsx-a11y",
     "import"
   ],
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
-    }
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: 'webpack.config.js',
+      },
+    },
   },
   "rules": {
     // Turning it on causes undecipherable errors.
     "arrow-body-style": "off",
-    // We use webpack resolve root and this conflicts with that.
-    "import/no-extraneous-dependencies": "off",
-    // We use webpack resolve root and this conflicts with that.
-    "import/no-unresolved": "off",
+    // Import required only for non-js files.
+    'import/extensions': ['error', 'always',
+      {
+        js: 'never',
+        jsx: 'never'
+      }
+    ],
     "react/jsx-first-prop-new-line": ["error", "never"],
     // It just looks nicer without the space.
     "react/jsx-space-before-closing": "off",
-    // TODO: Remove the following rule when eslint-config-airbnb updates to use "import/extensions rule from eslint-plugin-import"
-    "react/require-extension": "off"
+    // TODO: https://github.com/yannickcr/eslint-plugin-react/issues/861
+    'react/no-unused-prop-types': 'off',
+    // Let git handle the linebreaks instead
+    'linebreak-style': 'off',
   }
 }
