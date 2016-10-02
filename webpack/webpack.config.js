@@ -2,18 +2,19 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const merge = require('webpack-merge');
-const parts = require('./libs/parts');
-const pkg = require('./package.json');
+const utils = require('./utils');
+const devServer = require('./dev-server');
 
-const SRC = 'src';
-const BUILD = 'dist';
+const SRC = '../src';
+const BUILD = '../dist';
 const PATHS = {
   app: path.join(__dirname, SRC),
   scripts: path.join(__dirname, SRC, 'js'),
   styles: path.join(__dirname, SRC, 'styles'),
   images: path.join(__dirname, SRC, 'img'),
-  build: path.join(__dirname, BUILD)
+  build: path.join(__dirname, BUILD),
 };
+// These dependencies will be extracted out into `vendor.js` in production build.
 const vendor = [
   'axios',
   'lodash',
@@ -23,7 +24,7 @@ const vendor = [
   'react-router',
   'react-router-redux',
   'redux-logger',
-  'redux-thunk'
+  'redux-thunk',
 ];
 
 const common = {
@@ -34,36 +35,39 @@ const common = {
     root: [
       PATHS.app,
       PATHS.scripts,
-      PATHS.styles
+      PATHS.styles,
     ],
-    extensions: ['', '.js', '.jsx']
+    // Importing modules from these files will not require the extension.
+    extensions: ['', '.js', '.jsx'],
   },
   entry: {
-    app: ['main']
+    // This will build an app.js file from the `main` module.
+    app: ['main'],
   },
   output: {
     path: PATHS.build,
-    filename: '[name].js'
+    filename: '[name].js',
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/index.html'),
-      cache: true
+      template: path.join(__dirname, SRC, 'index.html'),
+      cache: true,
     }),
     new StyleLintPlugin({
-      context: PATHS.styles
-    })
+      context: PATHS.styles,
+    }),
   ],
   module: {
     preLoaders: [
       {
         test: /\.jsx?$/,
         loaders: ['eslint'],
-        include: PATHS.scripts
-      }
+        include: PATHS.scripts,
+      },
     ],
     loaders: [
       {
+        // Load js and jsx files using babel.
         test: /\.jsx?$/,
         // Enable caching for improved performance during development
         // It uses default OS directory by default. If you need
@@ -73,16 +77,16 @@ const common = {
         // Parse only app js files! Without this it will go through
         // the entire project. In addition to being slow,
         // that will most likely result in an error.
-        include: PATHS.scripts
+        include: PATHS.scripts,
       },
       {
         test: /\.(jpe?g|png|svg)$/,
         loader: 'file?name=img/[name].[hash].[ext]',
-        include: PATHS.images
-      }
-    ]
+        include: PATHS.images,
+      },
+    ],
   },
-  devServer: parts.devServer
+  devServer: devServer,
 };
 
 var config;
@@ -101,17 +105,17 @@ switch (process.env.npm_lifecycle_event) {
           filename: '[name].[chunkhash].js',
           // This is used for require.ensure. The setup
           // will work without but this is useful to set.
-          chunkFilename: '[chunkhash].js'
-        }
+          chunkFilename: '[chunkhash].js',
+        },
       },
-      parts.clean(PATHS.build),
-      parts.setFreeVariable('process.env.NODE_ENV', environment),
-      parts.extractBundle({
+      utils.clean(PATHS.build),
+      utils.setFreeVariable('process.env.NODE_ENV', environment),
+      utils.extractBundle({
         name: 'vendor',
-        entries: vendor
+        entries: vendor,
       }),
-      parts.minify(),
-      parts.extractCSS(PATHS.styles)
+      utils.minify(),
+      utils.extractCSS(PATHS.styles)
     );
     break;
   default:
@@ -119,14 +123,14 @@ switch (process.env.npm_lifecycle_event) {
     config = merge(
       common,
       {
-        devtool: 'eval-source-map'
+        devtool: 'eval-source-map',
       },
-      parts.setFreeVariable('process.env.NODE_ENV', environment),
-      parts.setupCSS(PATHS.styles),
-      parts.devServer({
+      utils.setFreeVariable('process.env.NODE_ENV', environment),
+      utils.setupCSS(PATHS.styles),
+      devServer({
         // Customize host/port here if needed
         host: process.env.HOST,
-        port: process.env.PORT
+        port: process.env.PORT,
       })
     );
 }
