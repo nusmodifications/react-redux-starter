@@ -4,8 +4,8 @@
   "description": "Barebones React Redux starter kit on Webpack",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --config=webpack/webpack.dev.config.js --open",
-    "build": "cross-env NODE_ENV=production webpack --config=webpack/webpack.prod.config.js"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config=webpack/webpack.config.dev.js --open",
+    "build": "cross-env NODE_ENV=production webpack --config=webpack/webpack.config.prod.js"
   },
   "author": "Tay Yang Shun",
   "license": "MIT",
@@ -40,6 +40,7 @@
     "style-loader": "^0.13.1",
     "stylelint-config-standard": "^13.0.0",
     "stylelint-webpack-plugin": "^0.4.0",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.14.0"

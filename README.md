@@ -1,7 +1,7 @@
 React Redux Starter
 ==
 
-Minimal non-opinionated starter for modern single-page applications. Highly based off the awesome [SurviveJS Webpack Guide](http://survivejs.com/webpack/).
+Yet another minimal non-opinionated starter for modern single-page applications. This starter combines the good parts from the awesome [SurviveJS Webpack Guide](http://survivejs.com/webpack/) and Facebook's [create-react-app](https://github.com/facebookincubator/create-react-app).
 
 ## Features
 
