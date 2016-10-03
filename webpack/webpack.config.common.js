@@ -49,12 +49,10 @@ const common = {
     }),
   ],
   module: {
-    // First, run the linter.
-    // It's important to do this before Babel processes the JS.
     preLoaders: [
-      // Before everything else, run the linter.
-      // It's important to do this before Babel processes the JS.
       {
+        // Before everything else, run the linter.
+        // It's important to do this before Babel processes the JS.
         test: /\.(js|jsx)$/,
         loaders: ['eslint'],
         include: PATHS.scripts,
