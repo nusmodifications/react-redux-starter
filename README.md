@@ -23,6 +23,7 @@ Yet another minimal non-opinionated starter for modern single-page applications.
 ## Getting Started
 ```
 $ npm install
+$ npm run build:dll # Do this whenever you update dependencies or change vendor bundle
 $ npm start
 ```
 

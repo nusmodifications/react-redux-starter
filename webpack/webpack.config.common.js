@@ -1,17 +1,36 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const utils = require('./utils');
 
-const SRC = '../src';
-const BUILD = '../dist';
+const ROOT = '..';
+const SRC = 'src';
+const BUILD = 'dist';
+const DLL = 'dll';
 const PATHS = {
-  app: path.join(__dirname, SRC),
-  scripts: path.join(__dirname, SRC, 'js'),
-  styles: path.join(__dirname, SRC, 'styles'),
-  images: path.join(__dirname, SRC, 'img'),
-  build: path.join(__dirname, BUILD),
+  app: path.join(__dirname, ROOT, SRC),
+  scripts: path.join(__dirname, ROOT, SRC, 'js'),
+  styles: path.join(__dirname, ROOT, SRC, 'styles'),
+  images: path.join(__dirname, ROOT, SRC, 'img'),
+  build: path.join(__dirname, ROOT, BUILD),
+  dll: path.join(__dirname, ROOT, DLL),
 };
+
+// These dependencies will be extracted out into `vendor.js` in production build.
+// App bundle changes more often than vendor bundle and splitting app bundle from
+// 3rd-party vendor bundle allows the vendor bundle to be cached.
+const VENDOR = [
+  'axios',
+  'lodash',
+  'react',
+  'react-dom',
+  'react-autobind',
+  'react-router',
+  'redux',
+  'react-redux',
+  'react-router-redux',
+  'redux-logger',
+  'redux-thunk',
+];
 
 const common = {
   // This tells Webpack where to look for modules.
@@ -40,10 +59,6 @@ const common = {
     filename: '[name].js',
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, SRC, 'index.html'),
-      cache: true,
-    }),
     new StyleLintPlugin({
       context: PATHS.styles,
     }),
@@ -105,3 +120,5 @@ const common = {
 
 module.exports = common;
 module.exports.PATHS = PATHS;
+module.exports.DLL = DLL;
+module.exports.VENDOR = VENDOR;
