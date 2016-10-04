@@ -1,21 +1,10 @@
+const webpack = require('webpack');
 const merge = require('webpack-merge');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const common = require('./webpack.config.common');
 const utils = require('./utils');
-
-// These dependencies will be extracted out into `vendor.js` in production build.
-// App bundle changes more often than vendor bundle and splitting app bundle from
-// 3rd-party vendor bundle allows the vendor bundle to be cached.
-const vendor = [
-  'axios',
-  'lodash',
-  'react',
-  'redux',
-  'react-redux',
-  'react-router',
-  'react-router-redux',
-  'redux-logger',
-  'redux-thunk',
-];
 
 const config = merge(
   common,
@@ -25,6 +14,12 @@ const config = merge(
     // We generate sourcemaps in production. This is slow but gives good results.
     // You can exclude the *.map files from the build during deployment.
     devtool: 'source-map',
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: path.join(common.PATHS.app, 'index.ejs'),
+        cache: true,
+      })
+    ],
     output: {
       // The build folder.
       path: common.PATHS.build,
@@ -40,7 +35,7 @@ const config = merge(
   utils.setFreeVariable('process.env.NODE_ENV', 'production'),
   utils.extractBundle({
     name: 'vendor',
-    entries: vendor,
+    entries: common.VENDOR,
   }),
   utils.minify(),
   utils.extractCSS(common.PATHS.styles)
