@@ -25,8 +25,8 @@ const config = merge(
             return path.join(common.DLL, dll.DLL_FILE_FORMAT.replace(/\[name\]/g, entryName));
           }),
         },
-      })
-      , Object.keys(dll.DLL_ENTRIES).map(function (entryName) {
+      }),
+      Object.keys(dll.DLL_ENTRIES).map(function (entryName) {
         return new webpack.DllReferencePlugin({
           context: '.',
           manifest: require(path.join(common.PATHS.dll, dll.DLL_MANIFEST_FILE_FORMAT.replace(/\[name\]/g, entryName)))
