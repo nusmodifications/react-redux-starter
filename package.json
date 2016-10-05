@@ -6,7 +6,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config=webpack/webpack.config.dev.js --open",
     "build": "cross-env NODE_ENV=production webpack --config=webpack/webpack.config.prod.js",
-    "build:dll": "cross-env NODE_ENV=development webpack --config=webpack/webpack.config.dll.js"
+    "build:dll": "cross-env NODE_ENV=development webpack --config=webpack/webpack.config.dll.js",
+    "postinstall": "npm run build:dll"
   },
   "author": "Tay Yang Shun",
   "license": "MIT",

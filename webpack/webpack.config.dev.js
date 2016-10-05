@@ -18,7 +18,7 @@ const config = merge(
         template: path.join(common.PATHS.app, 'index.ejs'),
         cache: true,
         // `dll` is a self-defined option to pass the paths of the built dll files
-        // to the template. The dll JavaScript files are loaded in script tags
+        // to the template. The dll JavaScript files are loaded in <script> tags
         // within the template and are available to the application.
         dll: {
           paths: Object.keys(dll.DLL_ENTRIES).map(function (entryName) {

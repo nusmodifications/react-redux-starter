@@ -4,7 +4,7 @@ const path = require('path');
 const common = require('./webpack.config.common');
 const utils = require('./utils');
 
-// Extract out these entry bundles into a dll.
+// Extract out these entry bundles into dll files.
 const DLL_ENTRIES = {
   vendor: common.VENDOR,
 };
