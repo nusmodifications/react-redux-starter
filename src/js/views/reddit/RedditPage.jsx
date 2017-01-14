@@ -54,13 +54,13 @@ class RedditPage extends Component {
 RedditPage.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({
     data: PropTypes.object,
-  })),
-  fetchReddits: PropTypes.func,
+  })).isRequired,
+  fetchReddits: PropTypes.func.isRequired,
   fetchRedditsRequest: PropTypes.shape({
     isPending: PropTypes.bool,
     isFailure: PropTypes.bool,
     isSuccessful: PropTypes.bool,
-  }),
+  }).isRequired,
 };
 
 function mapStateToProps(state) {
@@ -74,5 +74,5 @@ export default connect(
   mapStateToProps,
   {
     fetchReddits,
-  }
+  },
 )(RedditPage);

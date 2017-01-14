@@ -34,7 +34,7 @@ export default function AppContainer(props) {
             </ul>
           </div>
         </nav>
-        <br />
+        <br/>
         {props.children}
       </div>
     </div>

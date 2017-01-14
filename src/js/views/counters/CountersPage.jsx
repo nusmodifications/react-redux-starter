@@ -14,9 +14,9 @@ const CountersPage = props => (
 );
 
 CountersPage.propTypes = {
-  counter: PropTypes.number,
-  increment: PropTypes.func,
-  decrement: PropTypes.func,
+  counter: PropTypes.number.isRequired,
+  increment: PropTypes.func.isRequired,
+  decrement: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -30,5 +30,5 @@ export default connect(
   {
     increment,
     decrement,
-  }
+  },
 )(CountersPage);

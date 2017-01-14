@@ -9,7 +9,7 @@ const UserSection = props => (
 UserSection.propTypes = {
   params: PropTypes.shape({
     userId: PropTypes.string,
-  }),
+  }).isRequired,
 };
 
 export default UserSection;

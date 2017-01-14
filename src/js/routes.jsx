@@ -24,13 +24,13 @@ export default function () {
     <Provider store={store}>
       <Router history={history}>
         <Route path="/" component={AppContainer}>
-          <IndexRoute component={HomePage} />
+          <IndexRoute component={HomePage}/>
           <Route path="/users" component={UsersContainer}>
-            <Route path=":userId" component={UserSection} />
+            <Route path=":userId" component={UserSection}/>
           </Route>
-          <Route path="/counter" component={CountersPage} />
-          <Route path="/reddit" component={RedditPage} />
-          <Route path="*" component={NotFoundPage} />
+          <Route path="/counter" component={CountersPage}/>
+          <Route path="/reddit" component={RedditPage}/>
+          <Route path="*" component={NotFoundPage}/>
         </Route>
       </Router>
     </Provider>

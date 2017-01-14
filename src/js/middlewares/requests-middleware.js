@@ -61,7 +61,7 @@ export default store => next => (action) => {
         request: payload,
         meta,
         response,
-      })
+      }),
       ),
       error => next(constructActionWith({
         requestStatus: FAILURE,
@@ -69,7 +69,7 @@ export default store => next => (action) => {
         request: payload,
         meta,
         response: error,
-      })
-      )
+      }),
+      ),
     );
 };

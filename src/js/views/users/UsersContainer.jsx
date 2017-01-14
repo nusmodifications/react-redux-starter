@@ -40,7 +40,7 @@ class UsersContainer extends Component {
 }
 
 UsersContainer.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.element.isRequired,
 };
 
 export default UsersContainer;
