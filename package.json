@@ -7,7 +7,9 @@
     "start": "cross-env NODE_ENV=development webpack-dev-server --config=webpack/webpack.config.dev.js --open",
     "build": "cross-env NODE_ENV=production webpack --config=webpack/webpack.config.prod.js",
     "build:dll": "cross-env NODE_ENV=development webpack --config=webpack/webpack.config.dll.js",
-    "postinstall": "npm run build:dll"
+    "postinstall": "npm run build:dll",
+    "test": "jest --config .jestconfig --coverage",
+    "test:watch": "jest --config .jestconfig --watch"
   },
   "author": "Tay Yang Shun",
   "license": "MIT",
@@ -50,8 +52,11 @@
   "dependencies": {
     "axios": "^0.15.3",
     "bootstrap": "^4.0.0-alpha.6",
+    "enzyme": "^2.7.0",
+    "jest": "^18.1.0",
     "lodash": "^4.15.0",
     "react": "^15.2.0",
+    "react-addons-test-utils": "^15.4.2",
     "react-autobind": "^1.0.6",
     "react-dom": "^15.3.2",
     "react-redux": "^5.0.2",
