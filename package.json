@@ -48,7 +48,7 @@
     "webpack-merge": "^0.14.0"
   },
   "dependencies": {
-    "axios": "^0.14.0",
+    "axios": "^0.15.3",
     "bootstrap": "^4.0.0-alpha.6",
     "lodash": "^4.15.0",
     "react": "^15.2.0",
