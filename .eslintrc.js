@@ -4,11 +4,11 @@ module.exports = {
   extends: [
     'airbnb',
   ],
-  "env": {
+  env: {
     "browser": true,
     "node": true
   },
-  "plugins": [
+  plugins: [
     "react",
     "jsx-a11y",
     "import"
@@ -20,7 +20,7 @@ module.exports = {
       },
     },
   },
-  "rules": {
+  rules: {
     // Turning it on causes undecipherable errors.
     "arrow-body-style": "off",
     // Import required only for non-js files.
@@ -30,6 +30,13 @@ module.exports = {
         jsx: 'never',
       }
     ],
+    'import/no-duplicates': 'error',
+    'import/no-named-as-default': 'off',
+    'import/no-named-as-default-member': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'no-duplicate-imports': 'off',
+    'no-underscore-dangle': ['error', { 'allowAfterThis': true, 'allowAfterSuper': true }],
+    'react/jsx-filename-extension': 'off',
     "react/jsx-first-prop-new-line": ["error", "never"],
     // It just looks nicer without the space.
     "react/jsx-space-before-closing": "off",
