@@ -1,7 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
-class UsersContainer extends Component {
+export class UsersContainer extends Component {
+  static defaultProps = {
+    children: null,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -40,7 +44,7 @@ class UsersContainer extends Component {
 }
 
 UsersContainer.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.element,
 };
 
 export default UsersContainer;
