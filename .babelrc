@@ -1,18 +1,22 @@
 {
   "presets": [
     "es2015",
-    "react"
+    "react",
   ],
   "env": {
     "development": {
       "presets": [
-        "react-hmre"
-      ]
+        "react-hmre",
+      ],
     },
     "production": {
       "presets": [
-        "react-optimize"
-      ]
-    }
-  }
+        "react-optimize",
+      ],
+    },
+  },
+  "plugins": [
+    "syntax-object-rest-spread",
+    "transform-object-rest-spread",
+  ],
 }

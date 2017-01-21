@@ -39,12 +39,12 @@ class RedditPage extends Component {
           <input className="form-control" value={this.state.topic} onChange={this.updateTopic}/>
         </form>
         <br/>
-        {this.props.fetchRedditsRequest.isPending ? <p>Loading...</p> : null}
-        {this.props.fetchRedditsRequest.isFailure ? <p>Request failed</p> : null}
-        {this.props.fetchRedditsRequest.isSuccessful ?
+        {this.props.fetchRedditsRequest.isPending && <p>Loading...</p>}
+        {this.props.fetchRedditsRequest.isFailure && <p>Request failed</p>}
+        {this.props.fetchRedditsRequest.isSuccessful &&
           <ul>
             {this.props.items.map(item => <li key={item.data.id}>{item.data.title}</li>)}
-          </ul> : null
+          </ul>
         }
       </div>
     );

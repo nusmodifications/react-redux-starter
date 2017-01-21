@@ -2,14 +2,14 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { increment, decrement } from 'actions/counter';
 
-const CountersPage = props => (
+export const CountersPage = props => (
   <div>
     <h1>Counter</h1>
     <hr/>
-    <h3>{props.counter}</h3>
-    <button className="btn btn-primary" onClick={props.increment}>+</button>
+    <h3 className="counter-value">{props.counter}</h3>
+    <button className="btn btn-primary btn-increment" onClick={props.increment}>+</button>
     &nbsp;Buttons&nbsp;
-    <button className="btn btn-primary" onClick={props.decrement}>-</button>
+    <button className="btn btn-primary btn-decrement" onClick={props.decrement}>-</button>
   </div>
 );
 

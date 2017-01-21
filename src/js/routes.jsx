@@ -5,8 +5,8 @@ import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from 'stores/configure-store';
 
-import AppContainer from 'views/AppContainer';
-import NotFoundPage from 'views/NotFoundPage';
+import AppContainer from 'views/app/AppContainer';
+import NotFoundPage from 'views/not-found/NotFoundPage';
 
 import HomePage from 'views/home/HomePage';
 import UsersContainer from 'views/users/UsersContainer';

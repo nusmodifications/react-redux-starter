@@ -31,45 +31,48 @@ export default store => next => (action) => {
   // payload  is the request body to be processed
   const { type, payload, meta } = apiRequest;
 
-  // swap the action content and structured api results
+  // Swap the action content and structured api results
   function constructActionWith(data) {
     const finalAction = Object.assign({}, action, data);
     delete finalAction[API_REQUEST];
     return finalAction;
   }
 
-  // propagate the start of the request
+  // Propagate the start of the request
   next(constructActionWith({
-    requestStatus: REQUEST,
     type: type + REQUEST,
-    request: payload,
-    meta,
+    payload,
+    meta: {
+      ...meta,
+      requestStatus: REQUEST,
+    },
   }));
 
-  // get the access token from store
+  // Get the access token from store.
   let accessToken = '';
   if (_.get(store.getState(), 'user.accessToken')) {
     accessToken = store.getState().user.accessToken;
   }
 
-  // propagate the response of the request
-  return makeRequest(payload, accessToken, meta)
-    .then(
-      response => next(constructActionWith({
+  // Propagate the response of the request.
+  return makeRequest(payload, accessToken)
+    .then(response => next(constructActionWith({
+      type: type + SUCCESS,
+      payload: response,
+      meta: {
+        ...meta,
         requestStatus: SUCCESS,
-        type: type + SUCCESS,
         request: payload,
-        meta,
-        response,
-      }),
-      ),
-      error => next(constructActionWith({
+      },
+    })),
+    error => next(constructActionWith({
+      type: type + FAILURE,
+      payload: error,
+      meta: {
+        ...meta,
         requestStatus: FAILURE,
-        type: type + FAILURE,
         request: payload,
-        meta,
-        response: error,
-      }),
-      ),
+      },
+    })),
     );
 };
