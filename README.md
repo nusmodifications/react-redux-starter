@@ -55,7 +55,3 @@ The built files will be generated in `dist` folder.
 ## TODO
 
 - Code splitting example
-- Add Flow types
-- Add testing
-  - Enzyme
-  - Ava

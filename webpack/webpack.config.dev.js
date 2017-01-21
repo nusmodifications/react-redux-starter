@@ -17,7 +17,7 @@ if (args.indexOf('-no-dll') === -1) {
   dllPlugins = dllPlugins.concat(Object.keys(dll.DLL_ENTRIES).map(function (entryName) {
     return new webpack.DllReferencePlugin({
       context: '.',
-      manifest: require(path.join(common.PATHS.dll, dll.DLL_MANIFEST_FILE_FORMAT.replace(/\[name\]/g, entryName)))
+      manifest: require(path.join(common.PATHS.dll, dll.DLL_MANIFEST_FILE_FORMAT.replace(/\[name\]/g, entryName))),
     });
   }));
   // `dll` is a self-defined option to pass the paths of the built dll files
@@ -28,7 +28,7 @@ if (args.indexOf('-no-dll') === -1) {
       paths: Object.keys(dll.DLL_ENTRIES).map(function (entryName) {
         return path.join(common.DLL, dll.DLL_FILE_FORMAT.replace(/\[name\]/g, entryName));
       }),
-    }
+    },
   };
 }
 
@@ -53,6 +53,7 @@ const config = merge(
   },
   utils.setFreeVariable('process.env.NODE_ENV', 'development'),
   utils.setupCSS(common.PATHS.styles),
+  utils.flow(),
   devServer({
     // Customize host/port here if needed
     host: process.env.HOST,

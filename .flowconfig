@@ -1,0 +1,11 @@
+[ignore]
+.*node_modules/babel-core.*
+.*node_modules/fbjs.*
+.*node_modules/stylelint.*
+[include]
+
+[libs]
+
+[options]
+module.name_mapper='^\(actions\|components\|data\|middlewares\|reducers\|types\|views\)\/?\(.*\)$' -> '<PROJECT_ROOT>/src/js/\1/\2'
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe

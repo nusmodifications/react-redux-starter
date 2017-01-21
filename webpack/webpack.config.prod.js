@@ -18,7 +18,7 @@ const config = merge(
       new HtmlWebpackPlugin({
         template: path.join(common.PATHS.app, 'index.ejs'),
         cache: true,
-      })
+      }),
     ],
     output: {
       // The build folder.
