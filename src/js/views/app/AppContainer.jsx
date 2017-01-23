@@ -1,7 +1,13 @@
-import React, { PropTypes } from 'react';
+// @flow
+
+import React from 'react';
 import { Link } from 'react-router';
 
-export default function AppContainer(props) {
+type Props = {
+  children: any,
+};
+
+export default function AppContainer(props: Props) {
   return (
     <div className="app-container">
       <div className="container">
@@ -40,7 +46,3 @@ export default function AppContainer(props) {
     </div>
   );
 }
-
-AppContainer.propTypes = {
-  children: PropTypes.element.isRequired,
-};

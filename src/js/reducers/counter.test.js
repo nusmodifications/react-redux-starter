@@ -1,6 +1,6 @@
 import type { FSA } from 'types/redux';
 
-import counter, { defaultState } from './counter';
+import counter, { defaultCounterState } from 'reducers/counter';
 import * as counterActions from 'actions/counter';
 
 describe('counter reducer', () => {
@@ -9,13 +9,11 @@ describe('counter reducer', () => {
       type: 'FOO_BAR',
     };
     const nextState = counter(undefined, action);
-    expect(nextState).toEqual(defaultState);
+    expect(nextState).toEqual(defaultCounterState);
   });
 
   it('should handle INCREMENT', () => {
-    const action: FSA = {
-      type: counterActions.INCREMENT,
-    };
+    const action: FSA = counterActions.increment();
 
     const nextState = counter(undefined, action);
     expect(nextState).toEqual(1);
@@ -25,9 +23,7 @@ describe('counter reducer', () => {
   });
 
   it('should handle DECREMENT', () => {
-    const action: FSA = {
-      type: counterActions.DECREMENT,
-    };
+    const action: FSA = counterActions.decrement();
 
     const nextState = counter(undefined, action);
     expect(nextState).toEqual(-1);
@@ -37,12 +33,8 @@ describe('counter reducer', () => {
   });
 
   it('should handle INCREMENT and DECREMENT in succession', () => {
-    const incrementAction: FSA = {
-      type: 'INCREMENT',
-    };
-    const decrementAction: FSA = {
-      type: 'DECREMENT',
-    };
+    const incrementAction: FSA = counterActions.increment();
+    const decrementAction: FSA = counterActions.decrement();
 
     const nextState = counter(undefined, incrementAction);
     expect(nextState).toEqual(1);

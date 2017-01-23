@@ -1,15 +1,17 @@
-import React, { PropTypes } from 'react';
+// @flow
 
-const UserSection = props => (
+import React from 'react';
+
+type Props = {
+  params: {
+    userId: string,
+  },
+};
+
+const UserSection = (props: Props) => (
   <div>
     <p>User Id Selected: {props.params.userId}</p>
   </div>
 );
-
-UserSection.propTypes = {
-  params: PropTypes.shape({
-    userId: PropTypes.string,
-  }).isRequired,
-};
 
 export default UserSection;

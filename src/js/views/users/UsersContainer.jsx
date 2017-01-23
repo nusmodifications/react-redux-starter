@@ -1,12 +1,21 @@
-import React, { Component, PropTypes } from 'react';
+// @flow
+
+import React, { Component } from 'react';
+import DocumentTitle from 'react-document-title';
 import { Link } from 'react-router';
 
-export class UsersContainer extends Component {
+type Props = {
+  children: any,
+};
+
+type State = { users: Array<{ name: string, id: number }>};
+
+export default class UsersContainer extends Component {
   static defaultProps = {
     children: null,
   };
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       users: [
@@ -22,29 +31,27 @@ export class UsersContainer extends Component {
     };
   }
 
+  state: State;
+
   render() {
     return (
-      <div>
-        <h1>Users</h1>
-        <div className="users-page">
-          <ul>
-            {this.state.users.map(user => (
-              <li key={user.id}>
-                <Link to={`/users/${user.id}`}>{user.name}</Link>
-              </li>
-            ))}
-          </ul>
+      <DocumentTitle title="Users">
+        <div>
+          <h1>Users</h1>
+          <div className="users-page">
+            <ul>
+              {this.state.users.map(user => (
+                <li key={user.id}>
+                  <Link to={`/users/${user.id}`}>{user.name}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="users-detail">
+            {this.props.children}
+          </div>
         </div>
-        <div className="users-detail">
-          {this.props.children}
-        </div>
-      </div>
+      </DocumentTitle>
     );
   }
 }
-
-UsersContainer.propTypes = {
-  children: PropTypes.element,
-};
-
-export default UsersContainer;

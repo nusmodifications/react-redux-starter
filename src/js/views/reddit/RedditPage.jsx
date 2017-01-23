@@ -1,10 +1,26 @@
-import React, { Component, PropTypes } from 'react';
+// @flow
+import type { StoreState } from 'reducers';
+import type { RequestStates } from 'types/redux';
+import type { RedditState } from 'reducers/reddit';
+
+import React, { Component } from 'react';
+import DocumentTitle from 'react-document-title';
 import autoBind from 'react-autobind';
 import { connect } from 'react-redux';
 import { fetchReddits } from 'actions/reddit';
 
+type Props = {
+  items: RedditState,
+  fetchReddits: Function,
+  fetchRedditsRequest: RequestStates,
+};
+
+type State = {
+  topic: string,
+};
+
 class RedditPage extends Component {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       topic: 'reactjs',
@@ -12,58 +28,64 @@ class RedditPage extends Component {
     autoBind(this);
   }
 
+  state: State;
+
   componentDidMount() {
     this.search();
   }
 
-  updateTopic(event) {
-    this.setState({
-      topic: event.target.value,
-    });
-  }
+  props: Props;
 
-  search(event) {
-    if (event) {
-      event.preventDefault();
-    }
+  search() {
     this.props.fetchReddits(this.state.topic);
   }
 
   render() {
     return (
-      <div>
-        <h1>Reddit</h1>
-        <hr/>
-        <p>Try searching for &#34;redux&#34; to see the failure case.</p>
-        <form onSubmit={this.search}>
-          <input className="form-control" value={this.state.topic} onChange={this.updateTopic}/>
-        </form>
-        <br/>
-        {this.props.fetchRedditsRequest.isPending && <p>Loading...</p>}
-        {this.props.fetchRedditsRequest.isFailure && <p>Request failed</p>}
-        {this.props.fetchRedditsRequest.isSuccessful &&
-          <ul>
-            {this.props.items.map(item => <li key={item.data.id}>{item.data.title}</li>)}
-          </ul>
-        }
-      </div>
+      <DocumentTitle title="Reddit">
+        <div>
+          <h1>Reddit</h1>
+          <hr/>
+          <p>Try searching for &#34;redux&#34; to see the failure case.</p>
+          <form onSubmit={(event) => {
+            event.preventDefault();
+            this.search();
+          }}
+          >
+            <input className="form-control" value={this.state.topic} onChange={(event) => {
+              this.setState({
+                topic: event.target.value,
+              });
+            }}
+            />
+          </form>
+          <br/>
+          {this.props.fetchRedditsRequest.isPending && <p>Loading...</p>}
+          {this.props.fetchRedditsRequest.isFailure && <p>Request failed</p>}
+          {this.props.fetchRedditsRequest.isSuccessful &&
+            <ul>
+              {this.props.items.map((item) => {
+                return (
+                  <li key={item.data.id}>
+                    <a href={`https://reddit.com${item.data.permalink}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={item.data.title}
+                    >
+                      {item.data.title}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          }
+        </div>
+      </DocumentTitle>
     );
   }
 }
 
-RedditPage.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape({
-    data: PropTypes.object,
-  })).isRequired,
-  fetchReddits: PropTypes.func.isRequired,
-  fetchRedditsRequest: PropTypes.shape({
-    isPending: PropTypes.bool,
-    isFailure: PropTypes.bool,
-    isSuccessful: PropTypes.bool,
-  }).isRequired,
-};
-
-function mapStateToProps(state) {
+function mapStateToProps(state: StoreState) {
   return {
     items: state.reddit,
     fetchRedditsRequest: state.requests.fetchRedditsRequest || {},

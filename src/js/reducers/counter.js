@@ -1,8 +1,12 @@
+// @flow
+import type { FSA } from 'redux';
+
 import { INCREMENT, DECREMENT } from 'actions/counter';
 
-export const defaultState = 0;
+export type CounterState = number;
+export const defaultCounterState: CounterState = 0;
 
-function counter(state = defaultState, action) {
+function counter(state: CounterState = defaultCounterState, action: FSA): CounterState {
   switch (action.type) {
     case INCREMENT:
       return state + 1;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { UsersContainer } from './UsersContainer';
+import UsersContainer from './UsersContainer';
 
 describe('UsersContainer', () => {
   it('renders users', () => {

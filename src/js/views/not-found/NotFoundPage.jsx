@@ -1,9 +1,12 @@
+// @flow
+
 import React from 'react';
+import DocumentTitle from 'react-document-title';
 
 export default function NotFoundPage() {
   return (
-    <div>
+    <DocumentTitle title="404 Not Found">
       <h1>404 Not Found</h1>
-    </div>
+    </DocumentTitle>
   );
 }
