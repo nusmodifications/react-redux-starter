@@ -5,7 +5,7 @@ import DocumentTitle from 'react-document-title';
 import { Link } from 'react-router';
 
 type Props = {
-  children: any,
+  children: React$Element<any>,
 };
 
 type State = { users: Array<{ name: string, id: number }>};

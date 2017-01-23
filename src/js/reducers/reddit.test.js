@@ -2,7 +2,7 @@ import type { FSA } from 'types/redux';
 
 import reddit, { defaultRedditState } from 'reducers/reddit';
 import * as redditActions from 'actions/reddit';
-import * as RequestResultCases from 'middlewares/api-middleware';
+import * as RequestResultCases from 'middlewares/requests-middleware';
 
 describe('reddit reducer', () => {
   it('return the initial state', () => {
