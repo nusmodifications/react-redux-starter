@@ -19,7 +19,7 @@ type State = {
   topic: string,
 };
 
-class RedditPage extends Component {
+export class RedditsPage extends Component {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -43,7 +43,7 @@ class RedditPage extends Component {
   render() {
     return (
       <DocumentTitle title="Reddit">
-        <div>
+        <div className="reddits-page">
           <h1>Reddit</h1>
           <hr/>
           <p>Try searching for &#34;redux&#34; to see the failure case.</p>
@@ -97,4 +97,4 @@ export default connect(
   {
     fetchReddits,
   },
-)(RedditPage);
+)(RedditsPage);
