@@ -1,7 +1,11 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+import { shallow, mount } from 'enzyme';
 
-import { CountersPage } from 'views/counters/CountersPage';
+import ConnectedCountersPage, { CountersPage } from 'views/counters/CountersPage';
+
+const mockStore = configureStore();
 
 describe('CountersPage', () => {
   it('renders the counter', () => {
@@ -23,5 +27,18 @@ describe('CountersPage', () => {
 
     countersPage.find('.btn-decrement').simulate('click');
     expect(decrement).toHaveBeenCalledTimes(1);
+  });
+
+  it('should pass the props to the connected component', () => {
+    const defaultCounter = 42;
+    const store = mockStore({
+      counter: defaultCounter,
+    });
+    const wrapper = mount(
+      <Provider store={store}>
+        <ConnectedCountersPage/>
+      </Provider>
+    );
+    expect(wrapper.find('CountersPage').props().counter).toEqual(defaultCounter);
   });
 });

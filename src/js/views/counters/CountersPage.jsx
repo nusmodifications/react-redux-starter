@@ -24,6 +24,8 @@ export const CountersPage = (props: Props) => (
     </div>
   </DocumentTitle>
 );
+// Needed for Enzyme to render the component with the name to be used as selector.
+CountersPage.displayName = 'CountersPage';
 
 function mapStateToProps(state: StoreState) {
   return {
