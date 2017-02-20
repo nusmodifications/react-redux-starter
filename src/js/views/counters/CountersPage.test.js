@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { CountersPage } from 'views/counters/CountersPage';
 
 describe('CountersPage', () => {
-  it('renders all drivers', () => {
+  it('renders the counter', () => {
     const counter = 42;
     const increment = jest.fn();
     const decrement = jest.fn();

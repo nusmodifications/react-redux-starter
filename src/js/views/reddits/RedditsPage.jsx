@@ -1,16 +1,16 @@
 // @flow
 import type { StoreState } from 'reducers';
 import type { RequestStates } from 'types/redux';
-import type { RedditState } from 'reducers/reddit';
+import type { RedditsState } from 'reducers/reddits';
 
 import React, { Component } from 'react';
 import DocumentTitle from 'react-document-title';
 import autoBind from 'react-autobind';
 import { connect } from 'react-redux';
-import { fetchReddits } from 'actions/reddit';
+import { fetchReddits } from 'actions/reddits';
 
 type Props = {
-  items: RedditState,
+  items: RedditsState,
   fetchReddits: Function,
   fetchRedditsRequest: RequestStates,
 };
@@ -67,7 +67,7 @@ class RedditPage extends Component {
               {this.props.items.map((item) => {
                 return (
                   <li key={item.data.id}>
-                    <a href={`https://reddit.com${item.data.permalink}`}
+                    <a href={`https://reddits.com${item.data.permalink}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       title={item.data.title}
@@ -87,7 +87,7 @@ class RedditPage extends Component {
 
 function mapStateToProps(state: StoreState) {
   return {
-    items: state.reddit,
+    items: state.reddits,
     fetchRedditsRequest: state.requests.fetchRedditsRequest || {},
   };
 }

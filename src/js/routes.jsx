@@ -12,7 +12,7 @@ import HomePage from 'views/home/HomePage';
 import UsersContainer from 'views/users/UsersContainer';
 import UserSection from 'views/users/UserSection';
 import CountersPage from 'views/counters/CountersPage';
-import RedditPage from 'views/reddit/RedditPage';
+import RedditsPage from 'views/reddits/RedditsPage';
 
 const store = configureStore();
 const history = syncHistoryWithStore(useRouterHistory(createHistory)({
@@ -29,7 +29,7 @@ export default function () {
             <Route path=":userId" component={UserSection}/>
           </Route>
           <Route path="/counter" component={CountersPage}/>
-          <Route path="/reddit" component={RedditPage}/>
+          <Route path="/reddits" component={RedditsPage}/>
           <Route path="*" component={NotFoundPage}/>
         </Route>
       </Router>

@@ -21,15 +21,14 @@ export const SUCCESS = '_SUCCESS';
 export const FAILURE = '_FAILURE';
 
 export default store => next => (action) => {
-  const apiRequest = action[API_REQUEST];
-  if (!apiRequest) {
+  if (!action.meta || !action.meta[API_REQUEST]) {
     // Non-api request action
     return next(action);
   }
 
   // type     is the base action type that will trigger
   // payload  is the request body to be processed
-  const { type, payload, meta } = apiRequest;
+  const { type, payload, meta } = action;
 
   // Swap the action content and structured api results
   function constructActionWith(data) {

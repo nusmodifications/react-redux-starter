@@ -1,21 +1,21 @@
 // @flow
 import type { FSA } from 'redux';
 
-import { FETCH_REDDITS } from 'actions/reddit';
+import { FETCH_REDDITS } from 'actions/reddits';
 import * as RequestResultCases from 'middlewares/requests-middleware';
 
-export type RedditThread = {
+export type RedditsThread = {
   id: string,
   title: string,
   permalink: string,
 };
-export type RedditState = Array<{
-  data: RedditThread,
+export type RedditsState = Array<{
+  data: RedditsThread,
   kind: string,
 }>;
-export const defaultRedditState: RedditState = [];
+export const defaultRedditsState: RedditsState = [];
 
-function reddit(state: RedditState = defaultRedditState, action: FSA) {
+function reddits(state: RedditsState = defaultRedditsState, action: FSA) {
   switch (action.type) {
     case FETCH_REDDITS + RequestResultCases.SUCCESS:
       return action.payload.data.children;
@@ -24,4 +24,4 @@ function reddit(state: RedditState = defaultRedditState, action: FSA) {
   }
 }
 
-export default reddit;
+export default reddits;

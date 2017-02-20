@@ -1,16 +1,16 @@
 import type { FSA } from 'types/redux';
 
-import reddit, { defaultRedditState } from 'reducers/reddit';
-import * as redditActions from 'actions/reddit';
+import reddits, { defaultRedditsState } from 'reducers/reddits';
+import * as redditsActions from 'actions/reddits';
 import * as RequestResultCases from 'middlewares/requests-middleware';
 
-describe('reddit reducer', () => {
+describe('reddits reducer', () => {
   it('return the initial state', () => {
     const action: FSA = {
       type: 'FOO_BAR',
     };
-    const nextState = reddit(undefined, action);
-    expect(nextState).toEqual(defaultRedditState);
+    const nextState = reddits(undefined, action);
+    expect(nextState).toEqual(defaultRedditsState);
   });
 
   it('should handle INCREMENT', () => {
@@ -19,7 +19,7 @@ describe('reddit reducer', () => {
       { data: { id: 2, title: 'Bar' } },
     ];
     const action: FSA = {
-      type: redditActions.FETCH_REDDITS + RequestResultCases.SUCCESS,
+      type: redditsActions.FETCH_REDDITS + RequestResultCases.SUCCESS,
       payload: {
         data: {
           children: data,
@@ -27,7 +27,7 @@ describe('reddit reducer', () => {
       },
     };
 
-    const nextState = reddit(defaultRedditState, action);
+    const nextState = reddits(defaultRedditsState, action);
     expect(nextState).toEqual(data);
   });
 });

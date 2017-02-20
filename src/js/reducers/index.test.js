@@ -12,7 +12,7 @@ describe('rootReducer', () => {
     const state = rootReducer(initialState, dummyAction);
     expect(_.has(state, 'counter')).toBeTruthy();
     expect(_.has(state, 'errors')).toBeTruthy();
-    expect(_.has(state, 'reddit')).toBeTruthy();
+    expect(_.has(state, 'reddits')).toBeTruthy();
     expect(_.has(state, 'requests')).toBeTruthy();
   });
 });
