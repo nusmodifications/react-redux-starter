@@ -5,8 +5,8 @@ import HomePage from './HomePage';
 
 describe('HomePage', () => {
   it('renders both logos', () => {
-    const homePage = shallow(<HomePage/>);
-    expect(homePage.find('.logo').at(0).prop('alt')).toBe('React Logo');
-    expect(homePage.find('.logo').at(1).prop('alt')).toBe('Redux Logo');
+    const wrapper = shallow(<HomePage/>);
+    expect(wrapper.find('.logo').at(0).prop('alt')).toBe('React Logo');
+    expect(wrapper.find('.logo').at(1).prop('alt')).toBe('Redux Logo');
   });
 });

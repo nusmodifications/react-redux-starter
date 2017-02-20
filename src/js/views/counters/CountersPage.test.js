@@ -13,19 +13,19 @@ describe('CountersPage', () => {
     const increment = jest.fn();
     const decrement = jest.fn();
 
-    const countersPage = shallow(
+    const wrapper = shallow(
       <CountersPage counter={counter}
         increment={increment}
         decrement={decrement}
       />
     );
 
-    expect(countersPage.find('.counter-value').text()).toEqual(counter.toString());
+    expect(wrapper.find('.counter-value').text()).toEqual(counter.toString());
 
-    countersPage.find('.btn-increment').simulate('click');
+    wrapper.find('.btn-increment').simulate('click');
     expect(increment).toHaveBeenCalledTimes(1);
 
-    countersPage.find('.btn-decrement').simulate('click');
+    wrapper.find('.btn-decrement').simulate('click');
     expect(decrement).toHaveBeenCalledTimes(1);
   });
 

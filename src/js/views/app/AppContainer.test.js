@@ -11,8 +11,8 @@ describe('AppContainer', () => {
   });
 
   it('renders all the navigation items', () => {
-    const appContainer = shallow(<AppContainer><div/></AppContainer>);
-    const navLinks = appContainer.find('.nav-link');
+    const wrapper = shallow(<AppContainer><div/></AppContainer>);
+    const navLinks = wrapper.find('.nav-link');
     expect(navLinks.length).toBe(4);
     expect(navLinks.at(0).render().text()).toBe('Home');
     expect(navLinks.at(1).render().text()).toBe('Users');
