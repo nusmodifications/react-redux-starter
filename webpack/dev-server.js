@@ -17,8 +17,9 @@ module.exports = function (options) {
       // HotModuleReplacementPlugin!
       hot: true,
       inline: true,
-      // Display only errors to reduce the amount of output.
-      stats: 'errors-only',
+      stats: {
+        colors: true,
+      },
       // Parse host and port from env to allow customization.
       //
       // If you use Vagrant or Cloud9, set

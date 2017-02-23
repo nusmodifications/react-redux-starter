@@ -35,7 +35,7 @@ if (args.indexOf('-no-dll') === -1) {
 const config = merge(
   common,
   {
-    devtool: 'eval-source-map',
+    devtool: 'cheap-module-eval-source-map',
     plugins: [].concat(
       new HtmlWebpackPlugin(Object.assign({},
         {

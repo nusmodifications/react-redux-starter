@@ -2,13 +2,15 @@
 .*node_modules/babel-core.*
 .*node_modules/fbjs.*
 .*node_modules/stylelint.*
+.*node_modules/.*
 
 [include]
 
 [libs]
+flow-typed/
 
 [options]
-module.name_mapper='^\(actions\|components\|data\|middlewares\|reducers\|types\|views\)\/?\(.*\)$' -> '<PROJECT_ROOT>/src/js/\1/\2'
+module.name_mapper='^\(actions\|components\|data\|middlewares\|reducers\|types\|utils\|views\)\/?\(.*\)$' -> '<PROJECT_ROOT>/src/js/\1/\2'
 module.name_mapper='^img\/\(.*\)$' -> '<PROJECT_ROOT>/src/img/\1'
 module.name_mapper.extension='css' -> '<PROJECT_ROOT>/__mocks__/cssStub.js.flow'
 module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/__mocks__/cssStub.js.flow'
