@@ -1,6 +1,5 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
 import { shallow, mount } from 'enzyme';
 
 import {
@@ -11,8 +10,6 @@ import {
 } from 'utils/request-state-utils';
 import { RedditsPage, mapStateToProps } from './RedditsPage';
 import mockReddits from 'mocks/reddits.json';
-
-const mockStore = configureStore();
 
 describe('RedditsPage', () => {
   it('should render self and subcomponents', () => {
@@ -28,7 +25,7 @@ describe('RedditsPage', () => {
   });
 
   it('should render loading section for pending request', () => {
-    const wrapper = mount(
+    const wrapper = shallow(
       <RedditsPage items={mockReddits.data.children}
         fetchReddits={() => {}}
         fetchRedditsRequest={requestStatePending}
@@ -40,7 +37,7 @@ describe('RedditsPage', () => {
   });
 
   it('should render reddits list for successful request', () => {
-    const wrapper = mount(
+    const wrapper = shallow(
       <RedditsPage items={mockReddits.data.children}
         fetchReddits={() => {}}
         fetchRedditsRequest={requestStateSuccessful}
@@ -54,7 +51,7 @@ describe('RedditsPage', () => {
   });
 
   it('should render error message for failed request', () => {
-    const wrapper = mount(
+    const wrapper = shallow(
       <RedditsPage items={mockReddits.data.children}
         fetchReddits={() => {}}
         fetchRedditsRequest={requestStateFailure}

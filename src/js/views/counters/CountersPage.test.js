@@ -1,11 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
-import ConnectedCountersPage, { CountersPage } from 'views/counters/CountersPage';
-
-const mockStore = configureStore();
+import { mapStateToProps, CountersPage } from 'views/counters/CountersPage';
 
 describe('CountersPage', () => {
   it('renders the counter', () => {
@@ -29,16 +26,15 @@ describe('CountersPage', () => {
     expect(decrement).toHaveBeenCalledTimes(1);
   });
 
-  it('should pass the props to the connected component', () => {
+  it('should convert store state to props', () => {
     const defaultCounter = 42;
-    const store = mockStore({
+    const store = {
+      counter: defaultCounter,
+    };
+    const ownProps = {};
+    const props = mapStateToProps(store, ownProps);
+    expect(props).toEqual({
       counter: defaultCounter,
     });
-    const wrapper = mount(
-      <Provider store={store}>
-        <ConnectedCountersPage/>
-      </Provider>
-    );
-    expect(wrapper.find('CountersPage').props().counter).toEqual(defaultCounter);
   });
 });
