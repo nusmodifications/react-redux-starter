@@ -1,5 +1,5 @@
 // @flow
-import type { FSA } from 'redux';
+import type { FSA } from 'types/redux';
 import type { CounterState } from 'reducers/counter';
 import type { ErrorsState } from 'reducers/errors';
 import type { RedditsState } from 'reducers/reddits';

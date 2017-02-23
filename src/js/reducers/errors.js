@@ -1,5 +1,5 @@
 // @flow
-import type { FSA } from 'redux';
+import type { FSA } from 'types/redux';
 
 import _ from 'lodash';
 
@@ -38,6 +38,9 @@ export default function errors(state: ErrorsState = defaultErrorsState, action: 
   // Display api request errors
   if (meta && meta.requestStatus && meta.requestStatus === RequestResultTypes.FAILURE) {
     const domain = _.camelCase(type.replace(RequestResultTypes.FAILURE, ''));
+    if (!payload || !payload.response) {
+      return state;
+    }
     return {
       ...state,
       [domain]: payload.response.data || {},

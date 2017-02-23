@@ -3,8 +3,14 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import { shallow, mount } from 'enzyme';
 
+import {
+  requestStateInitial,
+  requestStatePending,
+  requestStateFailure,
+  requestStateSuccessful,
+} from 'utils/request-state-utils';
+import { RedditsPage, mapStateToProps } from './RedditsPage';
 import mockReddits from 'mocks/reddits.json';
-import ConnectedRedditsPage, { RedditsPage } from './RedditsPage';
 
 const mockStore = configureStore();
 
@@ -12,19 +18,51 @@ describe('RedditsPage', () => {
   it('should render self and subcomponents', () => {
     const mockSearch = jest.fn();
     const wrapper = mount(
-      <RedditsPage items={mockReddits.data.children}
-        fetchReddits={mockSearch}
-        fetchRedditsRequest={{
-          isPending: false,
-          isFailure: false,
-          isSuccessful: true,
-        }}
+      <RedditsPage fetchReddits={mockSearch}
+        fetchRedditsRequest={requestStateInitial}
       />
     );
     expect(wrapper.find('.reddits-page').length).toBe(1);
-    expect(wrapper.find('ul li').length).toBe(mockReddits.data.children.length);
     expect(wrapper.find('input').prop('value')).toBe('reactjs');
     expect(mockSearch).toBeCalledWith('reactjs');
+  });
+
+  it('should render loading section for pending request', () => {
+    const wrapper = mount(
+      <RedditsPage items={mockReddits.data.children}
+        fetchReddits={() => {}}
+        fetchRedditsRequest={requestStatePending}
+      />
+    );
+    expect(wrapper.find('.reddits-loading').length).toBe(1);
+    expect(wrapper.find('.reddits-failed').length).toBe(0);
+    expect(wrapper.find('.reddits-loaded').length).toBe(0);
+  });
+
+  it('should render reddits list for successful request', () => {
+    const wrapper = mount(
+      <RedditsPage items={mockReddits.data.children}
+        fetchReddits={() => {}}
+        fetchRedditsRequest={requestStateSuccessful}
+      />
+    );
+    expect(wrapper.find('.reddits-loading').length).toBe(0);
+    expect(wrapper.find('.reddits-failed').length).toBe(0);
+    expect(wrapper.find('.reddits-loaded').length).toBe(1);
+
+    expect(wrapper.find('ul li').length).toBe(mockReddits.data.children.length);
+  });
+
+  it('should render error message for failed request', () => {
+    const wrapper = mount(
+      <RedditsPage items={mockReddits.data.children}
+        fetchReddits={() => {}}
+        fetchRedditsRequest={requestStateFailure}
+      />
+    );
+    expect(wrapper.find('.reddits-loading').length).toBe(0);
+    expect(wrapper.find('.reddits-failed').length).toBe(1);
+    expect(wrapper.find('.reddits-loaded').length).toBe(0);
   });
 
   it('should allow editing of the input and searching', () => {
@@ -40,24 +78,18 @@ describe('RedditsPage', () => {
     expect(mockSearch).toHaveBeenLastCalledWith('redux');
   });
 
-  it('should pass the props to the connected component', () => {
-    const fetchRedditsRequest = {
-      isPending: false,
-      isFailure: false,
-      isSuccessful: true,
-    };
-    const store = mockStore({
+  it('should convert store state to props', () => {
+    const store = {
       reddits: mockReddits.data.children,
       requests: {
-        fetchRedditsRequest,
+        fetchRedditsRequest: requestStatePending,
       },
+    };
+    const ownProps = {};
+    const props = mapStateToProps(store, ownProps);
+    expect(props).toEqual({
+      items: mockReddits.data.children,
+      fetchRedditsRequest: requestStatePending,
     });
-    const wrapper = mount(
-      <Provider store={store}>
-        <ConnectedRedditsPage/>
-      </Provider>
-    );
-    expect(wrapper.find('RedditsPage').props().items).toEqual(mockReddits.data.children);
-    expect(wrapper.find('RedditsPage').props().fetchRedditsRequest).toEqual(fetchRedditsRequest);
   });
 });

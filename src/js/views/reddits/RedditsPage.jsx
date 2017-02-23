@@ -60,24 +60,30 @@ export class RedditsPage extends Component {
             />
           </form>
           <br/>
-          {this.props.fetchRedditsRequest.isPending && <p>Loading...</p>}
-          {this.props.fetchRedditsRequest.isFailure && <p>Request failed</p>}
+          {this.props.fetchRedditsRequest.isPending &&
+            <div className="reddits-loading">Loading...</div>
+          }
+          {this.props.fetchRedditsRequest.isFailure &&
+            <div className="reddits-failed">Request failed</div>
+          }
           {this.props.fetchRedditsRequest.isSuccessful &&
-            <ul>
-              {this.props.items.map((item) => {
-                return (
-                  <li key={item.data.id}>
-                    <a href={`https://reddits.com${item.data.permalink}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title={item.data.title}
-                    >
-                      {item.data.title}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
+            <div className="reddits-loaded">
+              <ul>
+                {this.props.items.map((item) => {
+                  return (
+                    <li key={item.data.id}>
+                      <a href={`https://reddits.com${item.data.permalink}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={item.data.title}
+                      >
+                        {item.data.title}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           }
         </div>
       </DocumentTitle>
@@ -85,7 +91,7 @@ export class RedditsPage extends Component {
   }
 }
 
-function mapStateToProps(state: StoreState) {
+export function mapStateToProps(state: StoreState) {
   return {
     items: state.reddits,
     fetchRedditsRequest: state.requests.fetchRedditsRequest || {},

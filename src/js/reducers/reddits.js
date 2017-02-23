@@ -1,5 +1,5 @@
 // @flow
-import type { FSA } from 'redux';
+import type { FSA } from 'types/redux';
 
 import { FETCH_REDDITS } from 'actions/reddits';
 import * as RequestResultCases from 'middlewares/requests-middleware';

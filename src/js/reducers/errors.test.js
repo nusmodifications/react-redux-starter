@@ -85,5 +85,17 @@ describe('errors reducer', () => {
       const nextState: ErrorsState = errors(errorsStateWithEmptyErrors, action);
       expect(nextState).toEqual(errorsStateWithSomeErrors);
     });
+
+    it('returns current state for failed requests without response', () => {
+      const action: FSA = {
+        type: actionBar + RequestResultCases.FAILURE,
+        meta: {
+          requestStatus: RequestResultCases.FAILURE,
+        },
+        payload: {},
+      };
+      const nextState: ErrorsState = errors(errorsStateWithEmptyErrors, action);
+      expect(nextState).toEqual(errorsStateWithEmptyErrors);
+    });
   });
 });

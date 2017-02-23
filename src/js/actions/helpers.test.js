@@ -50,6 +50,7 @@ describe('helpers actions', () => {
     it('should return an action', () => {
       const expectedAction: FSA = {
         type: actions.RESET_ALL_STATE,
+        payload: null,
       };
       const action: FSA = actions.resetAllState();
       expect(action).toEqual(expectedAction);

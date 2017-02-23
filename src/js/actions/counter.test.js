@@ -7,6 +7,7 @@ describe('counter actions', () => {
     const action: FSA = actions.increment();
     const expectedAction = {
       type: actions.INCREMENT,
+      payload: null,
     };
     expect(action).toEqual(expectedAction);
   });
@@ -15,6 +16,7 @@ describe('counter actions', () => {
     const action: FSA = actions.decrement();
     const expectedAction = {
       type: actions.DECREMENT,
+      payload: null,
     };
     expect(action).toEqual(expectedAction);
   });
