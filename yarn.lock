@@ -2578,11 +2578,12 @@ flow-bin@^0.38.0:
   version "0.38.0"
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.38.0.tgz#3ae096d401c969cc8b5798253fb82381e2d0237a"
 
-flow-scripts@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/flow-scripts/-/flow-scripts-0.1.0.tgz#b59f70f91c1c0cec5e332684ae068ba4a4d88ef1"
+flow-scripts@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/flow-scripts/-/flow-scripts-0.2.0.tgz#b737e17cd3240935aa824fe4dbf563de19dc18c4"
   dependencies:
     commander "^2.9.0"
+    lodash "^4.17.4"
 
 flow-status-webpack-plugin@^0.1.7:
   version "0.1.7"

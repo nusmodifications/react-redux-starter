@@ -7,7 +7,6 @@
 [include]
 
 [libs]
-flow-typed/
 
 [options]
 module.name_mapper='^\(actions\|components\|data\|middlewares\|reducers\|types\|utils\|views\)\/?\(.*\)$' -> '<PROJECT_ROOT>/src/js/\1/\2'
