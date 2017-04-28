@@ -5,6 +5,8 @@ Yet another minimal non-opinionated starter for modern single-page applications.
 
 ## Features
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/nusmodifications/react-redux-starter.svg)](https://greenkeeper.io/)
+
 **Build System**
 - Webpack, Webpack Dev Middleware, Webpack Hot Middleware
 
