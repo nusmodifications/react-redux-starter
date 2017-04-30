@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rootReducer has all the child reducers 1`] = `
+Object {
+  "counter": 0,
+  "errors": Object {},
+  "reddits": Array [],
+  "requests": Object {},
+  "routing": Object {
+    "locationBeforeTransitions": null,
+  },
+}
+`;

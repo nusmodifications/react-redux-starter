@@ -44,7 +44,7 @@
     "flow-scripts": "^0.2.0",
     "flow-status-webpack-plugin": "^0.1.7",
     "html-webpack-plugin": "^2.22.0",
-    "jest": "^18.1.0",
+    "jest": "^19.0.1",
     "node-sass": "^4.3.0",
     "postcss-loader": "^1.2.2",
     "react-addons-test-utils": "^15.4.2",

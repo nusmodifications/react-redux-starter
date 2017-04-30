@@ -26,7 +26,6 @@ describe('reddits reducer', () => {
         },
       },
     };
-
     const nextState = reddits(defaultRedditsState, action);
     expect(nextState).toEqual(data);
   });

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`counter actions should create an action to decrement 1`] = `
+Object {
+  "payload": null,
+  "type": "DECREMENT",
+}
+`;
+
+exports[`counter actions should create an action to increment 1`] = `
+Object {
+  "payload": null,
+  "type": "INCREMENT",
+}
+`;

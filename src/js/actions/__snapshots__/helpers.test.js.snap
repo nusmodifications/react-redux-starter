@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`helpers actions resetAllState should return an action 1`] = `
+Object {
+  "payload": null,
+  "type": "RESET_ALL_STATE",
+}
+`;
+
+exports[`helpers actions resetErrorState should convert an element into an array 1`] = `
+Object {
+  "payload": Array [
+    "TEST_ACTION",
+  ],
+  "type": "RESET_ERROR_STATE",
+}
+`;
+
+exports[`helpers actions resetErrorState should return an action 1`] = `
+Object {
+  "payload": Array [],
+  "type": "RESET_ERROR_STATE",
+}
+`;
+
+exports[`helpers actions resetRequestState should convert an element into an array 1`] = `
+Object {
+  "payload": Array [
+    "TEST_ACTION",
+  ],
+  "type": "RESET_REQUEST_STATE",
+}
+`;
+
+exports[`helpers actions resetRequestState should return an action 1`] = `
+Object {
+  "payload": Array [],
+  "type": "RESET_REQUEST_STATE",
+}
+`;
