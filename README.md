@@ -6,7 +6,7 @@ Yet another minimal non-opinionated starter for modern single-page applications.
 ## Features
 
 **Build System**
-- Webpack, Webpack Dev Middleware, Webpack Hot Middleware
+- webpack, webpack Dev Middleware, webpack Hot Middleware
 
 **JavaScript**
 - Babel 6
@@ -16,9 +16,14 @@ Yet another minimal non-opinionated starter for modern single-page applications.
 
 **CSS**
 - Bootstrap 4 with [Bulma theme](http://bulma.io/)
-- Eslint (Airbnb, React presets)
 - Sass
 - Postcss (Stylelint, Autoprefixer)
+
+**Maintainability**
+- Jest
+- Flow
+- ESLint (Airbnb, React presets)
+- Stylelint
 
 ## Getting Started
 
