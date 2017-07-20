@@ -1,5 +1,4 @@
 const path = require('path');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
 const utils = require('./utils');
 
 const ROOT = '..';
@@ -59,21 +58,7 @@ const common = {
     path: PATHS.build,
     filename: '[name].js',
   },
-  plugins: [
-    new StyleLintPlugin({
-      context: PATHS.styles,
-    }),
-  ],
   module: {
-    preLoaders: [
-      {
-        // Before everything else, run the linter.
-        // It's important to do this before Babel processes the JS.
-        test: /\.(js|jsx)$/,
-        loaders: ['eslint'],
-        include: PATHS.scripts,
-      },
-    ],
     loaders: [
       {
         // Process js and jsx files using Babel.

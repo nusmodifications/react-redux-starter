@@ -1,21 +1,31 @@
 // @flow
-import React from 'react';
-import DocumentTitle from 'react-document-title';
+import React, { Component } from 'react';
+import autobind from 'react-autobind';
 
 import reactLogoPath from 'img/react-logo.svg';
 import reduxLogoPath from 'img/redux-logo.svg';
+import MyComponent from '../MyComponent.jsx';
 
-const HomePage = () => (
-  <DocumentTitle title="React Redux Starter">
-    <div>
-      <h1>React Redux Starter</h1>
-      <hr/>
+type Props = {};
+
+class HomePage extends Component {
+  constructor(props: Props) {
+    super(props);
+    autobind(this);
+  }
+
+  render() {
+    return (
       <div>
-        <img src={reactLogoPath} alt="React Logo" className="logo"/>
-        <img src={reduxLogoPath} alt="Redux Logo" className="logo"/>
+        <h1>React Redux Starter</h1>
+        <hr/>
+        <div>
+          <img src={reactLogoPath} alt="React Logo" className="logo"/>
+          <img src={reduxLogoPath} alt="Redux Logo" className="logo"/>
+        </div>
       </div>
-    </div>
-  </DocumentTitle>
-);
+    );
+  }
+}
 
 export default HomePage;

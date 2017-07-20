@@ -10,7 +10,7 @@ type Props = {
 export default function AppContainer(props: Props) {
   return (
     <div className="app-container">
-      <div className="container">
+      <div>
         <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
           <button className="navbar-toggler navbar-toggler-right"
             type="button"
@@ -41,7 +41,9 @@ export default function AppContainer(props: Props) {
           </div>
         </nav>
         <br/>
-        {props.children}
+        <div className="container">
+          {props.children}
+        </div>
       </div>
     </div>
   );
