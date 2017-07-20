@@ -22,7 +22,7 @@ export default function AppContainer(props: Props) {
           >
             <span className="navbar-toggler-icon"/>
           </button>
-          <a className="navbar-brand" href="/">React Redux Starter</a>
+          <a className="navbar-brand" href="/">TripleByte</a>
           <div className="collapse navbar-collapse" id="navbar-supported-content">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">

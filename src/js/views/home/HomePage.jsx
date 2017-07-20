@@ -17,7 +17,7 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <h1>React Redux Starter</h1>
+        <h1>TripleByte</h1>
         <hr/>
         <div>
           <img src={reactLogoPath} alt="React Logo" className="logo"/>
