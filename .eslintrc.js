@@ -5,11 +5,15 @@ module.exports = {
     'airbnb',
     'plugin:flowtype/recommended',
   ],
+  env: {
+    browser: true,
+    node: true,
+  },
   plugins: [
     'flowtype',
-    'react',
+    'import',
     'jsx-a11y',
-    'import'
+    'react',
   ],
   settings: {
     'import/resolver': {
@@ -18,43 +22,43 @@ module.exports = {
       },
     },
   },
-  env: {
-    'browser': true,
-    'node': true,
-    'es6': true,
-    'mocha': true,
-    'jest': true,
-  },
   rules: {
-    // Turning it on causes undecipherable errors.
+    // Body style is more troublesome than it's worth
     'arrow-body-style': 'off',
-    // Import required only for non-js files.
+    // Consistent arrow parens.
+    'arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
+    // After adding flowtypes the lines are getting longer.
+    'max-len': ['error', 120],
     'import/extensions': ['error', 'always',
       {
         js: 'never',
-        jsx: 'never',
-      },
+        jsx: 'never'
+      }
     ],
-    // To allow flowtype definitions to be imported.
-    'import/no-duplicates': 'error',
-    // To allow enzyme to be imported in tests.
-    'import/no-extraneous-dependencies': ['error', { 'devDependencies': ['**/*.test.js'] }],
-    'import/no-named-as-default': 'off',
-    'import/no-named-as-default-member': 'off',
-    'jsx-a11y/href-no-hash': 'off',
-    'jsx-a11y/no-static-element-interactions': 'off',
-    'no-duplicate-imports': 'off',
-    'no-underscore-dangle': ['error', { 'allowAfterThis': true, 'allowAfterSuper': true }],
-    'react/jsx-filename-extension': 'off',
+    'react/no-array-index-key': 'off',
+    'react/jsx-closing-bracket-location': 'off',
     'react/jsx-first-prop-new-line': ['error', 'never'],
     // It just looks nicer without the space.
     'react/jsx-space-before-closing': 'off',
-    // TODO: https://github.com/yannickcr/eslint-plugin-react/issues/861
+    // SEE: https://github.com/yannickcr/eslint-plugin-react/issues
     'react/no-unused-prop-types': 'off',
-    'react/jsx-tag-spacing': ['error', {
-      beforeSelfClosing: 'never',
+    // Enables typing to be placed above lifecycle
+    "react/sort-comp": ['error', {
+      order: [
+        'type-annotations',
+        'static-methods',
+        'lifecycle',
+        '/^on.+$/',
+        'everything-else',
+        'render',
+      ],
     }],
-    // Let git handle the linebreaks instead
+    'react/require-default-props': 'off',
+    // TODO: Replace divs with buttons, but remove all button styling.
+    'jsx-a11y/no-static-element-interactions': 'off',
+    // TODO: Investigate this error.
+    'jsx-a11y/href-no-hash': 'off',
+    // Let git handle the linebreaks instead.
     'linebreak-style': 'off',
-  }
-}
+  },
+};

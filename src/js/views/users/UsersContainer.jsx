@@ -11,6 +11,9 @@ type Props = {
 type State = { users: Array<{ name: string, id: number }>};
 
 export default class UsersContainer extends Component {
+  state: State;
+  props: Props;
+
   static defaultProps = {
     children: null,
   };
@@ -30,9 +33,6 @@ export default class UsersContainer extends Component {
       ],
     };
   }
-
-  state: State;
-  props: Props;
 
   render() {
     return (
