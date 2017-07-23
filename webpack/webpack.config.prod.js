@@ -38,7 +38,8 @@ const config = merge(
     entries: common.VENDOR,
   }),
   utils.minify(),
-  utils.extractCSS(common.PATHS.styles)
+  utils.setupCSS(common.PATHS.styles) // TODO: Remove this and use back extractCSS
+  // utils.extractCSS(common.PATHS.styles) TODO: Add this back after upgrading to webpack 2
 );
 
 module.exports = config;

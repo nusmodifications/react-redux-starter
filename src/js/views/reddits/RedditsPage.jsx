@@ -52,11 +52,13 @@ export class RedditsPage extends Component {
             this.search();
           }}
           >
-            <input className="form-control" value={this.state.topic} onChange={(event) => {
-              this.setState({
-                topic: event.target.value,
-              });
-            }}
+            <input className="form-control"
+              value={this.state.topic}
+              onChange={(event) => {
+                this.setState({
+                  topic: event.target.value,
+                });
+              }}
             />
           </form>
           <br/>

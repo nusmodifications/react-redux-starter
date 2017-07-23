@@ -41,6 +41,7 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', { 'devDependencies': ['**/*.test.js'] }],
     'import/no-named-as-default': 'off',
     'import/no-named-as-default-member': 'off',
+    'jsx-a11y/href-no-hash': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
     'no-duplicate-imports': 'off',
     'no-underscore-dangle': ['error', { 'allowAfterThis': true, 'allowAfterSuper': true }],

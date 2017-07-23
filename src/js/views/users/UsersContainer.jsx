@@ -32,6 +32,7 @@ export default class UsersContainer extends Component {
   }
 
   state: State;
+  props: Props;
 
   render() {
     return (

@@ -102,6 +102,7 @@ exports.setupCSS = function (paths) {
   };
 }
 
+// TODO: Fix this for webpack 2.
 exports.extractCSS = function (paths) {
   return {
     module: {
