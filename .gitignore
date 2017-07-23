@@ -6,9 +6,10 @@ node_modules
 # testing
 coverage
 
-# dll
+# caching
 dll
 .cache-loader
+.eslintcache
 
 # production
 dist
