@@ -3,14 +3,16 @@
 import React from 'react';
 
 type Props = {
-  params: {
-    userId: string,
+  match: {
+    params: {
+      userId: string,
+    },
   },
 };
 
 const UserSection = (props: Props) => (
   <div>
-    <p>User Id Selected: {props.params.userId}</p>
+    <p>User Id Selected: {props.match.params.userId}</p>
   </div>
 );
 

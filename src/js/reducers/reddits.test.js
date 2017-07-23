@@ -1,3 +1,4 @@
+// @flow
 import type { FSA } from 'types/redux';
 
 import reddits, { defaultRedditsState } from 'reducers/reddits';
@@ -8,6 +9,7 @@ describe('reddits reducer', () => {
   it('return the initial state', () => {
     const action: FSA = {
       type: 'FOO_BAR',
+      payload: null,
     };
     const nextState = reddits(undefined, action);
     expect(nextState).toEqual(defaultRedditsState);

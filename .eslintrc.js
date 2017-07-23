@@ -7,6 +7,7 @@ module.exports = {
   ],
   env: {
     browser: true,
+    jest: true,
     node: true,
   },
   plugins: [
@@ -35,6 +36,7 @@ module.exports = {
         jsx: 'never'
       }
     ],
+    'import/no-named-as-default': 'off',
     'react/no-array-index-key': 'off',
     'react/jsx-closing-bracket-location': 'off',
     'react/jsx-first-prop-new-line': ['error', 'never'],

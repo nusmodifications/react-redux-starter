@@ -1,17 +1,18 @@
+// @flow
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow } from 'enzyme';
+import { MemoryRouter } from 'react-router';
+import { mount } from 'enzyme';
 
-import AppContainer from './AppContainer';
+import AppShell from './AppShell';
 
-describe('AppContainer', () => {
-  it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<AppContainer><div/></AppContainer>, div);
-  });
-
+describe('AppShell', () => {
   it('renders all the navigation items', () => {
-    const wrapper = shallow(<AppContainer><div/></AppContainer>);
+    const wrapper = mount(
+      <MemoryRouter>
+        <AppShell />
+      </MemoryRouter>
+    );
     const navLinks = wrapper.find('.nav-link');
     expect(navLinks.length).toBe(4);
     expect(navLinks.at(0).render().text()).toBe('Home');

@@ -1,12 +1,13 @@
+// @flow
 import type { FSA } from 'types/redux';
 import type { RequestsState } from 'reducers/requests';
 
+import * as helpersActions from 'actions/helpers';
+import * as RequestResultCases from 'middlewares/requests-middleware';
 import requests, {
   requestStateSuffix,
   defaultRequestsState,
 } from './requests';
-import * as helpersActions from 'actions/helpers';
-import * as RequestResultCases from 'middlewares/requests-middleware';
 
 const fooBar = 'fooBar';
 const defaultFooBarRequest = {
@@ -40,6 +41,7 @@ describe('requests reducer', () => {
   it('returns default state for non-applicable actions', () => {
     const action: FSA = {
       type: 'FOO_BAR',
+      payload: null,
     };
     const nextState: RequestsState = requests(requestsStateFooBarDefault, action);
     expect(nextState).toEqual(requestsStateFooBarDefault);
@@ -47,6 +49,7 @@ describe('requests reducer', () => {
     const action2: FSA = {
       type: 'FOO_BAR',
       meta: {},
+      payload: null,
     };
     const nextState2: RequestsState = requests(requestsStateFooBarDefault, action2);
     expect(nextState2).toEqual(requestsStateFooBarDefault);
@@ -85,6 +88,7 @@ describe('requests reducer', () => {
         meta: {
           requestStatus: RequestResultCases.REQUEST,
         },
+        payload: null,
       };
       const nextState: RequestsState = requests(requestsStateFooBarDefault, action);
       expect(nextState).toEqual(requestsStateFooBarPending);
@@ -96,6 +100,7 @@ describe('requests reducer', () => {
         meta: {
           requestStatus: RequestResultCases.SUCCESS,
         },
+        payload: null,
       };
       const nextState: RequestsState = requests(requestsStateFooBarDefault, action);
       expect(nextState).toEqual(requestsStateFooBarSuccess);
@@ -107,6 +112,7 @@ describe('requests reducer', () => {
         meta: {
           requestStatus: RequestResultCases.FAILURE,
         },
+        payload: null,
       };
       const nextState: RequestsState = requests(requestsStateFooBarDefault, action);
       expect(nextState).toEqual(requestsStateFooBarFailure);

@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { Provider } from 'react-redux';
 import { shallow } from 'enzyme';
@@ -31,8 +32,7 @@ describe('CountersPage', () => {
     const store = {
       counter: defaultCounter,
     };
-    const ownProps = {};
-    const props = mapStateToProps(store, ownProps);
+    const props = mapStateToProps(store);
     expect(props).toEqual({
       counter: defaultCounter,
     });

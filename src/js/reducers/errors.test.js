@@ -1,9 +1,10 @@
+// @flow
 import type { FSA } from 'types/redux';
 import type { ErrorsState } from 'reducers/errors';
 
-import errors, { defaultErrorsState } from './errors';
 import * as helpersActions from 'actions/helpers';
 import * as RequestResultCases from 'middlewares/requests-middleware';
+import errors, { defaultErrorsState } from './errors';
 
 const actionFoo = 'actionFoo';
 const actionBar = 'actionBar';
@@ -25,6 +26,7 @@ describe('errors reducer', () => {
   it('returns default state for non-applicable actions', () => {
     const action: FSA = {
       type: 'FOO_BAR',
+      payload: null,
     };
     const nextState: ErrorsState = errors(errorsStateWithEmptyErrors, action);
     expect(nextState).toEqual(errorsStateWithEmptyErrors);
@@ -63,6 +65,7 @@ describe('errors reducer', () => {
         meta: {
           requestStatus: RequestResultCases.SUCCESS,
         },
+        payload: null,
       };
       const nextState: ErrorsState = errors(errorsStateWithSomeErrors, action);
       expect(nextState).toEqual(errorsStateWithEmptyErrors);

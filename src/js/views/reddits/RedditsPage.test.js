@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { Provider } from 'react-redux';
 import { shallow, mount } from 'enzyme';
@@ -75,18 +76,31 @@ describe('RedditsPage', () => {
     expect(mockSearch).toHaveBeenLastCalledWith('redux');
   });
 
-  it('should convert store state to props', () => {
-    const store = {
-      reddits: mockReddits.data.children,
-      requests: {
+  describe('mapStateToProps', () => {
+    it('should convert store state to props', () => {
+      const store = {
+        reddits: mockReddits.data.children,
+        requests: {
+          fetchRedditsRequest: requestStatePending,
+        },
+      };
+      const props = mapStateToProps(store);
+      expect(props).toEqual({
+        items: mockReddits.data.children,
         fetchRedditsRequest: requestStatePending,
-      },
-    };
-    const ownProps = {};
-    const props = mapStateToProps(store, ownProps);
-    expect(props).toEqual({
-      items: mockReddits.data.children,
-      fetchRedditsRequest: requestStatePending,
+      });
+    });
+
+    it('should convert store state to props for initial state', () => {
+      const store = {
+        reddits: [],
+        requests: {},
+      };
+      const props = mapStateToProps(store);
+      expect(props).toEqual({
+        items: [],
+        fetchRedditsRequest: {},
+      });
     });
   });
 });

@@ -1,3 +1,4 @@
+// @flow
 import type { FSA } from 'types/redux';
 
 import counter, { defaultCounterState } from 'reducers/counter';
@@ -7,6 +8,7 @@ describe('counter reducer', () => {
   it('return the initial state', () => {
     const action: FSA = {
       type: 'FOO_BAR',
+      payload: null,
     };
     const nextState = counter(undefined, action);
     expect(nextState).toEqual(defaultCounterState);

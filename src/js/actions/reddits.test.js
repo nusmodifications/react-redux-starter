@@ -1,3 +1,5 @@
+// @flow
+import type { FSA } from 'types/redux';
 import * as redditsActions from './reddits';
 
 describe('reddits actions', () => {

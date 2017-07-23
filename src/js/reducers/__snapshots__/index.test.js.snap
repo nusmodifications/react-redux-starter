@@ -6,8 +6,5 @@ Object {
   "errors": Object {},
   "reddits": Array [],
   "requests": Object {},
-  "routing": Object {
-    "locationBeforeTransitions": null,
-  },
 }
 `;

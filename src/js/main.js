@@ -1,6 +1,22 @@
 import ReactDOM from 'react-dom';
-import routes from 'routes';
+import configureStore from 'stores/configure-store';
 
-import 'main.scss';
+import 'styles/main.scss';
 
-ReactDOM.render(routes(), document.getElementById('app'));
+import App from './App';
+
+
+const store = configureStore();
+const render = (Component) => {
+  ReactDOM.render(Component, document.getElementById('app'));
+};
+
+const init = () => {
+  render(App({ store }));
+};
+
+if (module.hot) {
+  module.hot.accept('App', init);
+}
+
+init();

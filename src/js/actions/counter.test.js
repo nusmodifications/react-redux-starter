@@ -1,3 +1,4 @@
+// @flow
 import type { FSA } from 'types/redux';
 
 import * as actions from 'actions/counter';

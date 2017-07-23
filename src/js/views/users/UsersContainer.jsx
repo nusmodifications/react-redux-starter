@@ -2,10 +2,11 @@
 
 import React, { Component } from 'react';
 import DocumentTitle from 'react-document-title';
-import { Link } from 'react-router';
+import { Link, Route } from 'react-router-dom';
+import UserSection from 'views/users/UserSection';
 
 type Props = {
-  children: React$Element<any>,
+  match: Object,
 };
 
 type State = { users: Array<{ name: string, id: number }>};
@@ -35,6 +36,7 @@ export default class UsersContainer extends Component {
   }
 
   render() {
+    const { match } = this.props;
     return (
       <DocumentTitle title="Users">
         <div>
@@ -43,13 +45,21 @@ export default class UsersContainer extends Component {
             <ul>
               {this.state.users.map(user => (
                 <li key={user.id}>
-                  <Link to={`/users/${user.id}`}>{user.name}</Link>
+                  <Link to={`${match.url}/${user.id}`}>{user.name}</Link>
                 </li>
               ))}
             </ul>
           </div>
           <div className="users-detail">
-            {this.props.children}
+            <Route path={`${match.url}/:userId`}
+              component={UserSection}
+            />
+            <Route exact
+              path={match.url}
+              render={() => (
+                <p>Please select a user.</p>
+              )}
+            />
           </div>
         </div>
       </DocumentTitle>

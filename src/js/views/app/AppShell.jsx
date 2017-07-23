@@ -1,13 +1,10 @@
 // @flow
 
 import React from 'react';
-import { Link } from 'react-router';
+import { NavLink, withRouter } from 'react-router-dom';
+import Routes from 'views/Routes';
 
-type Props = {
-  children: React$Element<any>,
-};
-
-export default function AppContainer(props: Props) {
+function AppShell() {
   return (
     <div className="app-container">
       <div className="container">
@@ -20,29 +17,31 @@ export default function AppContainer(props: Props) {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"/>
+            <span className="navbar-toggler-icon" />
           </button>
           <a className="navbar-brand" href="/">React Redux Starter</a>
           <div className="collapse navbar-collapse" id="navbar-supported-content">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/">Home</Link>
+                <NavLink className="nav-link" to="/">Home</NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/users">Users</Link>
+                <NavLink className="nav-link" to="/users">Users</NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/counter">Counter</Link>
+                <NavLink className="nav-link" to="/counter">Counter</NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/reddits">Reddit</Link>
+                <NavLink className="nav-link" to="/reddits">Reddit</NavLink>
               </li>
             </ul>
           </div>
         </nav>
-        <br/>
-        {props.children}
+        <br />
+        <Routes />
       </div>
     </div>
   );
 }
+
+export default withRouter(AppShell);
